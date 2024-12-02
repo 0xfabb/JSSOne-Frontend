@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - JSSOne</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #201f1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #2e2d2d;
+            padding: 55px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: white;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            color: white;
+
+        }
+        .placeholder{
+            background-color: #201f1f;
+        }
+        .btn {
+            background-color: #5018d4;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 60%;
+   
+        }
+        .sgn button{
+            margin-left: 80px;
+        }
+        .btn:hover {
+            background-color: #b51bc3;
+        }
+        .conditional-field {
+    margin-top: 10px;
+    display: none; /
+}
+
+.conditional-field label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.conditional-field input {
+    padding: 5px;
+    margin-top: 5px;
+}
+
+div > label {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+label{
+    color: white;
+}
+#email{
+    background-color: #2e2d2d;
+}
+#password{
+    background-color: #2e2d2d;
+}
+#uniqueId{
+    background-color: #2e2d2d;
+}
+#enrollmentId{
+    background-color: #2e2d2d;
+}
+#secId{
+    background-color: #2e2d2d;
+}
+
+div > label input[type="radio"] {
+    margin-right: 5px;
+}
+.btnss{
+    display: flex;
+    /* flex-direction: row;
+    gap: 65px; */
+    padding-top: 25px;
+    justify-content: space-between;
+}
+p{
+    color: white;
+}
+
+a{
+    color: #ff05b4;
+}
+    </style>
+</head>
+<body>
+    
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="signup-form" method="POST" action="http://localhost:5000/api/auth/login">
+        <input type="email" id="email" placeholder="Email" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+      
+<div class="btnss">
+    <label>
+        <input class="radio1" type="radio" name="role" value="student" onclick="showInputField('studentField')">
+        &nbsp;&nbsp;&nbsp;  Student
+    </label>
+    <label>
+        <input type="radio" name="role" value="cr" onclick="showInputField('crField')">
+        &nbsp;&nbsp;&nbsp;  Class Rep.
+    </label>
+    <label>
+        <input type="radio" name="role" value="clubSecretary" onclick="showInputField('clubSecretaryField')">
+        &nbsp;&nbsp; &nbsp;Club Sec.
+    </label>
+</div>
+
+<div id="studentField" class="conditional-field" style="display: none; color: white;">
+    <label for="enrollmentId">Enrollment ID:</label>
+    <input type="text" id="enrollmentId" name="enrollmentId" placeholder="Enter your Enrollment ID">
+</div>
+
+<div id="crField" class="conditional-field" style="display: none; color: white;">
+    <label for="uniqueId">CR Unique ID:</label>
+    <input type="text" id="uniqueId" name="uniqueId" placeholder="Enter your CR Unique ID">
+</div>
+
+<div id="clubSecretaryField" class="conditional-field" style="display: none; color: white;">
+    <label for="secId">Secretary ID:</label>
+    <input type="text" id="secId" name="secId" placeholder="Enter your Secretary ID">
+</div>
+
+    <br> <br> <div class="sgn">   <button type="submit" class="btn">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+</div></div>
+
+<script>
+    const loginForm = document.getElementById('loginForm');
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+  
+    const role = document.querySelector('input[name="role"]:checked').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+  
+    fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, role })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+
+            if (role === 'student') {
+                window.location.href = '/dashboard.html';
+            } else if (role === 'cr') {
+                window.location.href = '/cr_dashboard.html';
+            } else if (role === 'club_sec') {
+                window.location.href = '/club_sec_dashboard.html';
+            }
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(err => console.error('Error:', err));
+});
+
+    function showInputField(selectedField) {
+ 
+    document.querySelectorAll('.conditional-field').forEach(field => {
+        field.style.display = 'none';
+    });
+
+
+    if (selectedField) {
+        document.getElementById(selectedField).style.display = 'block';
+    }
+}
+
+</script>
+
+</body>
+</html>

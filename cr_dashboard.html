@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR Dashboard - JSSOne</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #201f1f;
+            color: #003566;
+        }
+        .header {
+            background-color: #5018d4;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 22px;
+        }
+        .container {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.113);
+            height: 400px;
+            padding-top: 170px;
+            width: 900px;
+            padding-left: 260px;
+            border-radius: 50px;
+        }
+        .button {
+            background-color: #5018d4;
+            border: none;
+            padding: 10px 40px;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            height: 65px;
+            
+           
+        }
+        .button:hover {
+            background-color: #780fa2;
+        }
+        .btnlist{
+            display: flex;
+            gap: 75px;
+        }
+        .items{
+            display: flex;
+            gap: 855px;
+        
+        }
+        .logout{
+            width: 65px;
+            height: 45px;
+            background-color: rgb(255, 0, 0);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            
+        }
+        .log{
+            padding-top: 20px;
+        }
+        h2{
+            color: white;
+            padding-left: 135px;
+            font-size: 34px;
+        }
+        .cont{
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .box{
+            padding-left: 195px;
+        }
+        .button3{
+            background-color: #5018d4;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            height: 65px;
+            padding-left: 25px;
+            width: 145px;
+
+            
+        }
+        .button3:hover {
+            background-color: #780fa2;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+    <div class="header">
+      <div class="items">
+        <h1>Welcome to the CR Dashboard</h1>
+   <div class="log"> <button class="logout">Logout</button>
+   </div>    
+</div>
+    </div>
+    <div class="box">
+    <div class="container">
+        <h2>Manage Class Activities</h2>
+        <div class="btnlist">
+            <button class="button">View Schedule</button>
+            <a href="add_post.html"> <button class="button">Make Announcement</button></a> 
+            <button class="button3">Chat Group  </button>
+    
+        </div>
+        </div>
+</div>
+    </div>
+</div>
+</body>
+</html>
